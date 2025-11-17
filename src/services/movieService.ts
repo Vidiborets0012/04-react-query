@@ -1,16 +1,22 @@
 import axios from "axios";
-import type { Movie } from "../types/movie";
+import type { MoviesResponse } from "../types/movie";
 
 const BASE_URL = "https://api.themoviedb.org/3/search/movie";
 
-interface MoviesResponse {
-  results: Movie[];
-}
+// interface MoviesResponse {
+//   results: Movie[];
+//   page: number;
+//   total_pages: number;
+// }
 
-export default async function fetchMovies(query: string): Promise<Movie[]> {
+export default async function fetchMovies(
+  query: string,
+  page: number = 1
+): Promise<MoviesResponse> {
   const response = await axios.get<MoviesResponse>(BASE_URL, {
     params: {
       query: query,
+      page,
     },
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
@@ -18,5 +24,11 @@ export default async function fetchMovies(query: string): Promise<Movie[]> {
     },
   });
 
-  return response.data.results;
+  return response.data;
+  //Тепер функція повертає:
+  // {
+  //   page,
+  //   results,
+  //   total_pages
+  // }
 }
