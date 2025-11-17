@@ -3,12 +3,6 @@ import type { MoviesResponse } from "../types/movie";
 
 const BASE_URL = "https://api.themoviedb.org/3/search/movie";
 
-// interface MoviesResponse {
-//   results: Movie[];
-//   page: number;
-//   total_pages: number;
-// }
-
 export default async function fetchMovies(
   query: string,
   page: number = 1
@@ -25,10 +19,4 @@ export default async function fetchMovies(
   });
 
   return response.data;
-  //Тепер функція повертає:
-  // {
-  //   page,
-  //   results,
-  //   total_pages
-  // }
 }

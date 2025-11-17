@@ -12,21 +12,10 @@ import ReactPaginate from "react-paginate";
 import css from "./App.module.css";
 
 export default function App() {
-  // const [movies, setMovies] = useState<Movie[]>([]);
-  // const [isLoading, setIsLoading] = useState<boolean>(false);
-  // const [isError, setIsError] = useState(false);
-
   const [query, setQuery] = useState("");
-  //додати локальний стан для page
   const [page, setPage] = useState(1);
-
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
-  // const handleSelectMovie = (movie: Movie | null) => {
-  //   setSelectedMovie(movie);
-  // };
-
-  //оновити useQuery, щоб враховував page
   const { data, isLoading, isError, isSuccess } = useQuery({
     queryKey: ["movies", query, page],
     queryFn: () => fetchMovies(query, page),
@@ -37,21 +26,6 @@ export default function App() {
   const handleSearch = async (searchQuery: string) => {
     setQuery(searchQuery);
     setPage(1);
-
-    // try {
-    //   setMovies([]);
-    //   setIsError(false);
-    //   setIsLoading(true);
-    //   const fetchedMovies = await fetchMovies(searchQuery);
-    //   setMovies(fetchedMovies);
-    //   if (fetchedMovies.length === 0) {
-    //     toast.error("No movies found for your request.");
-    //   }
-    // } catch {
-    //   setIsError(true);
-    // } finally {
-    //   setIsLoading(false);
-    // }
   };
 
   const totalPages = data?.total_pages ?? 0;

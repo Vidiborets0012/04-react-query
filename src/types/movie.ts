@@ -8,7 +8,6 @@ export interface Movie {
   vote_average: number;
 }
 
-//винести для перевикористання у fetchMovies, Арр та useQuery
 export interface MoviesResponse {
   page: number;
   results: Movie[];
