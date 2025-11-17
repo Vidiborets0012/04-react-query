@@ -15,7 +15,7 @@ export default async function fetchMovies(
 ): Promise<MoviesResponse> {
   const response = await axios.get<MoviesResponse>(BASE_URL, {
     params: {
-      query: query,
+      query,
       page,
     },
     headers: {
